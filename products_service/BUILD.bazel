@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load("@grpc_ecosystem_grpc_gateway//protoc-gen-swagger:defs.bzl", "protoc_gen_swagger")
+load("//:swagger_gen.bzl", "swagger_gen")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+    name = "products_service_proto",
+    srcs = ["products_service.proto"],
+    deps = [
+
+        "@go_googleapis//google/api:annotations_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+protoc_gen_swagger(
+    name = "protoc_gen_swagger",
+    proto = ":products_service_proto",
+)
+
+swagger_gen(
+    name = "swagger_gen",
+    additional_properties = "ngVersion=6",
+    language = "typescript-angular",
+    spec = ":protoc_gen_swagger",
+)
