@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package proto_swagger_gen.api;
+
+import "google/api/annotations.proto";
+
+service ProductsService {
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {
+    option (google.api.http) = {
+      post : "/some_url/endpoint",
+      body : "*"
+    };
+  }
+}
+
+message GetProductsRequest {}
+
+message GetProductsResponse {
+  int32 status = 1;
+  repeated Product products = 2;
+}
+
+message Product {
+  string family_code = 1;
+  string family_name = 2;
+  string manufacturer = 3;
+  int32 ratings_count = 4;
+  int32 device_rank = 5;
+  repeated ColorOption color_options = 6;
+  string average_star_rating = 7;
+  string operating_system = 9;
+  string default_sku = 10;
+  repeated SKU skus = 11;
+}
+
+message SKU {
+  string sku_code = 1;
+  repeated SkuPrice sku_prices = 2;
+  repeated Image images = 3;
+  repeated string badges = 4;
+}
+
+message SkuPrice {}
+
+message Image {
+  string imgtype = 1;
+  string url = 2;
+}
+
+message ColorOption {
+  string name = 1;
+  string image_path = 2;
+}

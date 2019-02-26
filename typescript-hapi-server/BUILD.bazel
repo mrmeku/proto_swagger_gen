@@ -1,0 +1,10 @@
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "typescript-hapi-server",
+    srcs = glob(["src/main/java/**/*.java"]),
+    resources = glob(["src/main/resources/**"]),
+    deps = [
+        "//tools:swagger_codegen_cli",
+    ],
+)
