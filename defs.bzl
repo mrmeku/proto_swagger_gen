@@ -1,10 +1,18 @@
 load("@grpc_ecosystem_grpc_gateway//protoc-gen-swagger:defs.bzl", "protoc_gen_swagger")
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
 
-def swagger_gen(name, proto_library):
+def proto_swagger_gen(name, proto, deps = []):
+    native.proto_library(
+        name = name + "_proto_library",
+        srcs = [proto],
+        deps = deps + [
+            "@go_googleapis//google/api:annotations_proto",
+        ],
+    )
+
     protoc_gen_swagger(
         name = name,
-        proto = proto_library,
+        proto = ":" + name + "_proto_library",
     )
 
     openapi_gen(

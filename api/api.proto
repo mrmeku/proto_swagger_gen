@@ -3,8 +3,8 @@ syntax = "proto3";
 package proto_swagger_gen.api;
 
 import "google/api/annotations.proto";
-import "products_service/products_service.proto";
-import "cart_service/cart_service.proto";
+import "api/products_service.proto";
+import "api/cart_service.proto";
 
 service ApiService {
   rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {

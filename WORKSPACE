@@ -4,9 +4,8 @@
 workspace(name = "proto_swagger_gen")
 
 # This rule is built-into Bazel but we need to load it first to download more rules
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
 
 # Rules for producing a GRPC gateway and translating protocol buffers to swagger definitions
 http_archive(
@@ -48,7 +47,7 @@ http_archive(
     urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
 )
 
-rules_openapi_version="0dfbfd09b54bad726547ec06f8c046a76be7f757" # update this as needed
+rules_openapi_version = "0dfbfd09b54bad726547ec06f8c046a76be7f757"  # update this as needed
 
 git_repository(
     name = "io_bazel_rules_openapi",
@@ -56,8 +55,8 @@ git_repository(
     remote = "git@github.com:mrmeku/rules_openapi.git",
 )
 
-
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
+
 openapi_repositories()
 
 #######################################
