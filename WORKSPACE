@@ -5,6 +5,7 @@ workspace(name = "angular_bazel_example")
 
 # This rule is built-into Bazel but we need to load it first to download more rules
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 
 # Rules for producing a GRPC gateway and translating protocol buffers to swagger definitions
@@ -15,12 +16,11 @@ http_archive(
     url = "https://github.com/grpc/grpc-java/archive/v1.18.0.tar.gz",
 )
 
-grpc_gateway_version = "1.7.0"
-
 http_archive(
     name = "grpc_ecosystem_grpc_gateway",
-    strip_prefix = "grpc-gateway-{v}".format(v = grpc_gateway_version),
-    url = "https://github.com/grpc-ecosystem/grpc-gateway/archive/v{v}.zip".format(v = grpc_gateway_version),
+    sha256 = "8b7afdfb6866c3f4d7630095fba1e7e7ff9b57491a5963d144ac58a9cc7dffa8",
+    strip_prefix = "grpc-gateway-1.7.0",
+    url = "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.7.0.zip",
 )
 
 # Swagger Code Gen Jar for producing Angular HTTP Services
@@ -31,6 +31,7 @@ http_jar(
 
 http_archive(
     name = "com_github_bazelbuild_buildtools",
+    sha256 = "b5d7dbc6832f11b6468328a376de05959a1a9e4e9f5622499d3bab509c26b46a",
     strip_prefix = "buildtools-bf564b4925ab5876a3f64d8b90fab7f769013d42",
     url = "https://github.com/bazelbuild/buildtools/archive/bf564b4925ab5876a3f64d8b90fab7f769013d42.zip",
 )
@@ -46,6 +47,18 @@ http_archive(
     sha256 = "7949fc6cc17b5b191103e97481cf8889217263acf52e00b560683413af204fcb",
     urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
 )
+
+rules_openapi_version="0dfbfd09b54bad726547ec06f8c046a76be7f757" # update this as needed
+
+git_repository(
+    name = "io_bazel_rules_openapi",
+    commit = rules_openapi_version,
+    remote = "git@github.com:mrmeku/rules_openapi.git",
+)
+
+
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
+openapi_repositories()
 
 #######################################
 # END DANS OWN DEPS

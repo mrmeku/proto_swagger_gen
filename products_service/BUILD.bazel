@@ -1,7 +1,7 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load("@grpc_ecosystem_grpc_gateway//protoc-gen-swagger:defs.bzl", "protoc_gen_swagger")
-load("//:swagger_gen.bzl", "swagger_gen")
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -23,9 +23,8 @@ protoc_gen_swagger(
     proto = ":products_service_proto",
 )
 
-swagger_gen(
-    name = "swagger_gen",
-    additional_properties = "ngVersion=6",
-    language = "typescript-angular",
-    spec = ":protoc_gen_swagger",
+openapi_gen(
+  name = "openapi_gen_angular",
+  language = "typescript-angular",
+  spec = ":protoc_gen_swagger",
 )
