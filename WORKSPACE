@@ -57,7 +57,10 @@ git_repository(
 
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
 
-openapi_repositories()
+bind(
+    name = "io_bazel_rules_openapi/dependency/openapi-cli",
+    actual = "//tools:swagger_codegen_cli",
+)
 
 #######################################
 # END DANS OWN DEPS

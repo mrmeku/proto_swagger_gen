@@ -19,4 +19,7 @@ def proto_swagger_gen(name, proto, deps = []):
         name = name + "_angular",
         language = "typescript-angular",
         spec = ":" + name,
+        additional_properties = {
+            "ngVersion": "6",
+        },
     )
