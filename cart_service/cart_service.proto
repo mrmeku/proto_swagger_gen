@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package proto_swagger_gen.api;
+
+import "google/api/annotations.proto";
+
+message GetCartRequest {
+}
+
+message GetCartResponse {
+  int32 status = 1;
+  Cart cart = 2;
+}
+
+message Cart {
+  
+}
+
+
+
+service CartService {
+  rpc GetCart(GetCartRequest) returns (GetCartResponse) {
+    option (google.api.http) = {
+      post: "/some_url/cart",
+      body: "*"
+    };
+  }
+}

@@ -1,12 +1,8 @@
 syntax = "proto3";
-option go_package = "products_server";
-option java_multiple_files = true;
-option java_package = "products_service";
 
-package angular_bazel_GRPC.products_service;
+package proto_swagger_gen.api;
 
 import "google/api/annotations.proto";
-
 
 message GetProductsRequest {
 }

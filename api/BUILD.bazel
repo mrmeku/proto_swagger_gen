@@ -1,0 +1,16 @@
+load("@grpc_ecosystem_grpc_gateway//protoc-gen-swagger:defs.bzl", "protoc_gen_swagger")
+load("//:swagger_gen.bzl", "swagger_gen")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+    name = "proto_library",
+    srcs = ["api_service.proto"],
+    deps = [
+        "@go_googleapis//google/api:annotations_proto",
+        "//products_service:products_service_proto",
+        "//cart_service:cart_service_proto",
+    ],
+)
+
+swagger_gen(name = "api", proto_library = ":proto_library")

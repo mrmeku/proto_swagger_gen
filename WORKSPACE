@@ -1,7 +1,7 @@
 # The WORKSPACE file tells Bazel that this directory is a "workspace", which is like a project root.
 # The content of this file specifies all the external dependencies Bazel needs to perform a build.
 
-workspace(name = "angular_bazel_example")
+workspace(name = "proto_swagger_gen")
 
 # This rule is built-into Bazel but we need to load it first to download more rules
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar", "http_archive")

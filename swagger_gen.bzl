@@ -1,57 +1,14 @@
-def _swagger_gen_impl(ctx):
-    args = ctx.actions.args()
-    args.add(["-jar", ctx.file._codegen_cli.path])
-    args.add("generate")
-    args.add(["-i", ctx.file.spec.path])
-    args.add(["-l", "typescript-angular"])
-    args.add(["-o", "{dirname}/{rule_name}".format(
-        dirname=ctx.file.spec.dirname,
-        rule_name=ctx.attr.name
-    )])
-    args.add(["--additional-properties", ctx.attr.additional_properties])
+load("@grpc_ecosystem_grpc_gateway//protoc-gen-swagger:defs.bzl", "protoc_gen_swagger")
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_gen")
 
-    outputs = [ctx.actions.declare_directory("%s" % (ctx.attr.name))]
-
-    ctx.actions.run(
-        executable = ctx.executable._java,
-        inputs = ctx.files._jdk + [
-            ctx.executable._java,
-            ctx.file._codegen_cli,
-            ctx.file.spec
-        ],
-        outputs = outputs,
-        arguments = [args],
-        progress_message="Running Swagger Codegen %s" % ctx.label,
+def swagger_gen(name, proto_library):
+    protoc_gen_swagger(
+        name = name,
+        proto = proto_library,
     )
 
-    return struct(files = depset(outputs))
-
-swagger_gen = rule(
-    attrs = {
-        # openapi spec file
-        "spec": attr.label(
-            mandatory = True,
-            allow_single_file = FileType([".json", ".yaml"])
-        ),
-        "language": attr.string(
-            mandatory = True
-        ),
-        "additional_properties": attr.string(),
-        "_jdk": attr.label(
-            default = Label("//tools/defaults:jdk"),
-            allow_files = True
-        ),
-        "_java": attr.label(
-            executable = True,
-            cfg = "host",
-            default = Label("@bazel_tools//tools/jdk:java"),
-            allow_single_file = True,
-        ),
-        "_codegen_cli": attr.label(
-            cfg = "host",
-            default = Label("@io_swagger_swagger_codegen_cli//jar"),
-            allow_single_file = True,
-        ),
-    },
-    implementation = _swagger_gen_impl,
-)
+    openapi_gen(
+        name = name + "_angular",
+        language = "typescript-angular",
+        spec = ":" + name,
+    )
