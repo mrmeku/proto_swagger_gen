@@ -9,12 +9,11 @@ proto_library(
     name = "products_service_proto",
     srcs = ["products_service.proto"],
     deps = [
-
-        "@go_googleapis//google/api:annotations_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
+        "@go_googleapis//google/api:annotations_proto",
     ],
 )
 
@@ -24,7 +23,7 @@ protoc_gen_swagger(
 )
 
 openapi_gen(
-  name = "openapi_gen_angular",
-  language = "typescript-angular",
-  spec = ":protoc_gen_swagger",
+    name = "openapi_gen_angular",
+    language = "typescript-angular",
+    spec = ":protoc_gen_swagger",
 )

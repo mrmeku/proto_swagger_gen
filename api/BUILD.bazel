@@ -7,10 +7,13 @@ proto_library(
     name = "proto_library",
     srcs = ["api_service.proto"],
     deps = [
-        "@go_googleapis//google/api:annotations_proto",
-        "//products_service:products_service_proto",
         "//cart_service:cart_service_proto",
+        "//products_service:products_service_proto",
+        "@go_googleapis//google/api:annotations_proto",
     ],
 )
 
-swagger_gen(name = "api", proto_library = ":proto_library")
+swagger_gen(
+    name = "api",
+    proto_library = ":proto_library",
+)

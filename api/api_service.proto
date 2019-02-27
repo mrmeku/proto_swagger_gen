@@ -8,15 +8,15 @@ import "cart_service/cart_service.proto";
 
 service ApiService {
   rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {
-      option (google.api.http) = {
-          post: "/some_url/endpoint",
-          body: "*"
-      };
-      }
+    option (google.api.http) = {
+      post : "/some_url/endpoint",
+      body : "*"
+    };
+  }
   rpc GetCart(GetCartRequest) returns (GetCartResponse) {
-      option (google.api.http) = {
-        post: "/some_url/cart",
-        body: "*"
-      };
-    }
+    option (google.api.http) = {
+      post : "/some_url/cart",
+      body : "*"
+    };
+  }
 }
