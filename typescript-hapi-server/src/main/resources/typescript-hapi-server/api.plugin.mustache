@@ -1,0 +1,59 @@
+import { HapiServerPlugin } from '@tmo/hapi/utils';
+import * as Boom from 'boom';
+
+{{#imports}}
+import { {{classname}} } from '../{{filename}}';
+{{/imports}}
+
+{{#description}}
+/**
+ * {{&description}}
+ */
+{{/description}}
+
+export interface {{classname}}Config {
+  {{#operations}}
+  {{#operation}}
+  {{nickname}}: (
+    config: {
+      server: any;
+      options: any;
+      {{#allParams}}
+      request: {{{dataType}}};
+      {{/allParams}}
+    }
+  ) => Promise<{{returnType}}>;
+  {{/operation}}
+  {{/operations}}
+  warmCache?: (options: any) => void;
+}
+
+export class {{classname}} implements HapiServerPlugin {
+  readonly name = '{{classname}}';
+  readonly version = '1.0.0';
+  readonly once = true;
+
+  constructor(private readonly config: {{classname}}Config) {}
+
+  readonly register = async (server, options) => {
+    if (this.config.warmCache) {
+      this.config.warmCache(options);
+    }
+
+    {{#operations}}
+    {{#operation}}
+    server.route({
+      path: '{{path}}',
+      method: '{{httpMethodUpperCase}}',
+      handler: async request => {
+        try {
+          return await this.config.{{nickname}}({ server, options, request });
+        } catch (error) {
+          return Boom.serverUnavailable(error);
+        }
+      }
+    });
+    {{/operation}}
+    {{/operations}}
+  };
+}

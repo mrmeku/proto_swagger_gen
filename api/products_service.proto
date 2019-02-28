@@ -4,8 +4,16 @@ package proto_swagger_gen.api;
 
 import "google/api/annotations.proto";
 
-message GetProductsRequest {
+service ProductsService {
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {
+    option (google.api.http) = {
+      post : "/some_url/endpoint",
+      body : "*"
+    };
+  }
 }
+
+message GetProductsRequest {}
 
 message GetProductsResponse {
   int32 status = 1;
@@ -32,9 +40,7 @@ message SKU {
   repeated string badges = 4;
 }
 
-message SkuPrice {
-
-}
+message SkuPrice {}
 
 message Image {
   string imgtype = 1;
@@ -44,13 +50,4 @@ message Image {
 message ColorOption {
   string name = 1;
   string image_path = 2;
-}
-
-service ProductsService {
-  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {
-    option (google.api.http) = {
-      post: "/some_url/endpoint",
-      body: "*"
-    };
-  }
 }

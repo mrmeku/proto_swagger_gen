@@ -23,3 +23,12 @@ def proto_swagger_gen(name, proto, deps = []):
             "ngVersion": "6",
         },
     )
+
+    openapi_gen(
+        name = name + "_server",
+        language = "typescript-hapi-server",
+        spec = ":" + name,
+        deps = [
+            "//tools:typescript_hapi_server_swagger_codegen",
+        ],
+    )
