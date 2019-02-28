@@ -23,3 +23,14 @@ def proto_swagger_gen(name, proto, deps = []):
             "ngVersion": "6",
         },
     )
+
+    openapi_gen(
+        name = name + "_server",
+        language = "typescript-hapi-server",
+        spec = ":" + name,
+        deps = [
+            "//tools:typescript_hapi_server_swagger_codegen",
+        ],
+    )
+
+# ✘-1 daniel-pc:~/proto_swagger_gen [hapi L|✚ 9 …1]> java -cp tools/swagger-codegen-cli.jar:tools/typescript-hapi-server-swagger-codegen.jar io.swagger.codegen.SwaggerCodegen generate -i bazel-out/k8-fastbuild/bin/api/api.swagger.json -l typescript-hapi-server -o bazel-out/k8-fastbuild/bin/api/api_server -D "" --additional-properties "" --type-mappings ""
