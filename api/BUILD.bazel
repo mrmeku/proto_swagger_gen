@@ -1,4 +1,5 @@
-load("@proto_swagger_gen//:defs.bzl", "proto_swagger_gen")
+load("@proto_swagger_gen//:proto_swagger_gen.bzl", "proto_swagger_gen")
+load("@proto_swagger_gen//:consolidate_swagger.bzl", "consolidate_swagger")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -12,11 +13,10 @@ proto_swagger_gen(
     proto = "products_service.proto",
 )
 
-proto_swagger_gen(
+consolidate_swagger(
     name = "api",
-    proto = "api.proto",
     deps = [
-        ":cart_service_proto_library",
-        ":products_service_proto_library",
+        ":cart_service",
+        ":products_service",
     ],
 )

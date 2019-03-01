@@ -50,6 +50,16 @@ git_repository(
     remote = "git@github.com:mrmeku/rules_openapi.git",
 )
 
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "86ea92217dfd4a84e1e335cc07dfd942b12899796b080492546b947f12c5ab77",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.26.0-beta.0/rules_nodejs-0.26.0-beta.0.tar.gz"],
+)
+
+load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "npm_install", "yarn_install")
+
+node_repositories()
+
 # Normally you'd use openapi_repositories here but we want to use our local jar
 # rather than fetching one from maven.
 bind(
