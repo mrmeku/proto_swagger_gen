@@ -1,0 +1,65 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/cart_service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/some_url/cart": {
+      "post": {
+        "operationId": "GetCart",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetCartResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiGetCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CartService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiCart": {
+      "type": "object"
+    },
+    "apiGetCartRequest": {
+      "type": "object"
+    },
+    "apiGetCartResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "cart": {
+          "$ref": "#/definitions/apiCart"
+        }
+      }
+    }
+  }
+}

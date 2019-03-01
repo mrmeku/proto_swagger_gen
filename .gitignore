@@ -2,3 +2,9 @@ node_modules
 bazel-out
 dist
 typescript-hapi-server/target
+*.srcjar
+.swagger-codegen-ignore
+.swagger-codegen/
+.gitignore
+git_push.sh
+artifacts/**/README.md
