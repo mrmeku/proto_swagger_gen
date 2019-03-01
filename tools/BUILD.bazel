@@ -6,10 +6,3 @@ java_import(
         "swagger-codegen-cli.jar",
     ],
 )
-
-java_import(
-    name = "typescript_hapi_server_swagger_codegen",
-    jars = [
-        "typescript-hapi-server-swagger-codegen.jar",
-    ],
-)
