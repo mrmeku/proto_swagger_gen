@@ -15,7 +15,6 @@ import io.swagger.codegen.CodegenModel;
 import io.swagger.codegen.CodegenParameter;
 import io.swagger.codegen.CodegenOperation;
 import io.swagger.codegen.SupportingFile;
-import io.swagger.codegen.utils.SemVer;
 import io.swagger.models.ModelImpl;
 import io.swagger.models.properties.*;
 

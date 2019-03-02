@@ -46,7 +46,7 @@ http_archive(
 
 git_repository(
     name = "io_bazel_rules_openapi",
-    commit = "0dfbfd09b54bad726547ec06f8c046a76be7f757",  # update this as needed
+    commit = "b3a36eab6bef63fe11cec72015b258fc77370b91",  # update this as needed
     remote = "git@github.com:mrmeku/rules_openapi.git",
 )
 
@@ -60,11 +60,10 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "npm_install",
 
 node_repositories()
 
-# Normally you'd use openapi_repositories here but we want to use our local jar
-# rather than fetching one from maven.
-bind(
-    name = "io_bazel_rules_openapi/dependency/openapi-cli",
-    actual = "//tools:swagger_codegen_cli",
+load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
+
+openapi_repositories(
+    swagger_codegen_cli_version = "2.4.2",
 )
 
 # Transitive dependencies of grpc_ecosystem_grpc_gateway

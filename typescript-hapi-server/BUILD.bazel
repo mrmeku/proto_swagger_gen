@@ -5,6 +5,6 @@ java_library(
     srcs = glob(["src/main/java/**/*.java"]),
     resources = glob(["src/main/resources/**"]),
     deps = [
-        "//tools:swagger_codegen_cli",
+        "//external:io_bazel_rules_openapi/dependency/openapi-cli",
     ],
 )

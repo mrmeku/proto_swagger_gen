@@ -26,7 +26,7 @@ consolidate_swagger = rule(
             mandatory = True,
         ),
         "_consolidate_swagger": attr.label(
-            default = Label("//tools:consolidate-swagger.js"),
+            default = Label("//:consolidate-swagger.js"),
             allow_single_file = FileType([".js"]),
         ),
         "_node": attr.label(
