@@ -12,11 +12,3 @@ proto_swagger_gen(
     name = "products_service",
     proto = "products_service.proto",
 )
-
-consolidate_swagger(
-    name = "api",
-    deps = [
-        ":cart_service",
-        ":products_service",
-    ],
-)
