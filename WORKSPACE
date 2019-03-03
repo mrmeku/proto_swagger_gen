@@ -44,15 +44,11 @@ http_archive(
     urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
 )
 
-git_repository(
+http_archive(
     name = "io_bazel_rules_openapi",
-    commit = "b3a36eab6bef63fe11cec72015b258fc77370b91",  # update this as needed
-    remote = "git@github.com:mrmeku/rules_openapi.git",
+    strip_prefix = "rules_openapi-b3a36eab6bef63fe11cec72015b258fc77370b91",
+    url = "https://github.com/mrmeku/rules_openapi/archive/b3a36eab6bef63fe11cec72015b258fc77370b91.zip",
 )
-
-load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "npm_install", "yarn_install")
-
-node_repositories()
 
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
 

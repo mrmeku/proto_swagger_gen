@@ -1,5 +1,4 @@
 load("@proto_swagger_gen//:proto_swagger_gen.bzl", "proto_swagger_gen")
-load("@proto_swagger_gen//:consolidate_swagger.bzl", "consolidate_swagger")
 
 package(default_visibility = ["//visibility:public"])
 
