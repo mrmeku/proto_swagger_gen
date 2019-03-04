@@ -53,6 +53,7 @@ http_archive(
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
 
 openapi_repositories(
+    swagger_codegen_cli_sha1 = "805ebb3000a0bbdedc99bb80860148c629b6c80c",
     swagger_codegen_cli_version = "2.4.2",
 )
 

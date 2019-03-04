@@ -1,0 +1,3 @@
+docker-bazel-out
+docker-dist
+dist
