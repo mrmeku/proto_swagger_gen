@@ -7,8 +7,7 @@ docker run -m 8GB --cpus 8 -e USER="$(id -u)" \
  --output_user_root=/tmp/build_output \
  build //api/... --symlink_prefix=dist/
 
-rm -rf docker-build-artifacts
-mkdir docker-build-artifacts
+rm -rf proto_swagger_gen_out
+mkdir proto_swagger_gen_out
 
-cp --no-preserve=mode,ownership -rLf dist/a08c2e4811c846650b733c6fc815a920/execroot/proto_swagger_gen/bazel-out/k8-fastbuild/bin/api/* docker-build-artifacts
-git clean -fX
+cp --no-preserve=mode,ownership -rLf dist/a08c2e4811c846650b733c6fc815a920/execroot/proto_swagger_gen/bazel-out/k8-fastbuild/bin/api/* proto_swagger_gen_out
