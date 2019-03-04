@@ -3,3 +3,10 @@ bazel-out
 
 dist
 !dist/.git-keep
+
+docker-build-artifacts/**/*.srcjar
+docker-build-artifacts/**/git_push.sh
+docker-build-artifacts/**/.gitignore
+docker-build-artifacts/**/.swagger-codegen
+docker-build-artifacts/**/.swagger-codegen-ignore
+docker-build-artifacts/**/README.md

@@ -1,0 +1,159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/products_service.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/some_url/endpoint": {
+      "post": {
+        "operationId": "GetProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetProductsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiGetProductsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProductsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiColorOption": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "image_path": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetProductsRequest": {
+      "type": "object"
+    },
+    "apiGetProductsResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiProduct"
+          }
+        }
+      }
+    },
+    "apiImage": {
+      "type": "object",
+      "properties": {
+        "imgtype": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "apiProduct": {
+      "type": "object",
+      "properties": {
+        "family_code": {
+          "type": "string"
+        },
+        "family_name": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "ratings_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "device_rank": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color_options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiColorOption"
+          }
+        },
+        "average_star_rating": {
+          "type": "string"
+        },
+        "operating_system": {
+          "type": "string"
+        },
+        "default_sku": {
+          "type": "string"
+        },
+        "skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiSKU"
+          }
+        }
+      }
+    },
+    "apiSKU": {
+      "type": "object",
+      "properties": {
+        "sku_code": {
+          "type": "string"
+        },
+        "sku_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiSkuPrice"
+          }
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiImage"
+          }
+        },
+        "badges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "apiSkuPrice": {
+      "type": "object"
+    }
+  }
+}

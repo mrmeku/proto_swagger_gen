@@ -1,3 +1,2 @@
-docker-bazel-out
-docker-dist
+docker-build-artifacts
 dist
