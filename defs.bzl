@@ -29,6 +29,6 @@ def proto_swagger_gen(name, proto, deps = []):
         language = "typescript-hapi-server",
         spec = ":" + name,
         deps = [
-            "//plugins/typescript-hapi-server",
+            "//example/plugins/typescript-hapi-server",
         ],
     )
