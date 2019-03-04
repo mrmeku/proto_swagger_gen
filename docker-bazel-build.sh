@@ -11,3 +11,4 @@ rm -rf docker-build-artifacts
 mkdir docker-build-artifacts
 
 cp --no-preserve=mode,ownership -rLf dist/a08c2e4811c846650b733c6fc815a920/execroot/proto_swagger_gen/bazel-out/k8-fastbuild/bin/api/* docker-build-artifacts
+git clean -fX
