@@ -5,7 +5,6 @@ workspace(name = "proto_swagger_gen")
 
 # This rule is built-into Bazel but we need to load it first to download more rules
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Rules for translating protocol buffers to swagger definitions
 http_archive(
@@ -44,10 +43,11 @@ http_archive(
     urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
 )
 
+# Rules for invoking the swagger code generator
 http_archive(
     name = "io_bazel_rules_openapi",
-    strip_prefix = "rules_openapi-b3a36eab6bef63fe11cec72015b258fc77370b91",
-    url = "https://github.com/mrmeku/rules_openapi/archive/b3a36eab6bef63fe11cec72015b258fc77370b91.zip",
+    strip_prefix = "rules_openapi-7e3e826a7f479efce458592d8639f92cb619ce73",
+    url = "https://github.com/meetup/rules_openapi/archive/7e3e826a7f479efce458592d8639f92cb619ce73.zip",
 )
 
 load("@io_bazel_rules_openapi//openapi:openapi.bzl", "openapi_repositories")
