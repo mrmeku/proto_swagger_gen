@@ -1,2 +1,3 @@
 proto_swagger_gen_out
+docker_cache
 dist

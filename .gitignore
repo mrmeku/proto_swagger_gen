@@ -1,8 +1,8 @@
 node_modules
 bazel-out
-
+docker_cache
+!docker_cache/.gitkeep
 dist
-!dist/.git-keep
 
 proto_swagger_gen_out/**/*.srcjar
 proto_swagger_gen_out/**/git_push.sh
