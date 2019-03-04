@@ -23,3 +23,7 @@ If they are missing your favorite language or framework combination then you can
 - See [`example/api`](https://github.com/mrmeku/proto_swagger_gen/tree/master/example/api) for how use the macro.
 - See [`example/proto_swagger_gen_out`](https://github.com/mrmeku/proto_swagger_gen/tree/master/example/proto_swagger_gen_out) to see the output of the macro.
 - See [`example/plugins/typescript-hapi-server`](https://github.com/mrmeku/proto_swagger_gen/tree/master/example/plugins/typescript-hapi-server) for how to create a plugin.
+
+### Update `example/proto_swagger_gen_out`
+- Via yarn: `yarn && yarn update-example`
+- Via npm: `npm install && npm run update-example`

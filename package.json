@@ -1,0 +1,21 @@
+{
+  "name": "proto_swagger_gen",
+  "version": "0.0.1",
+  "description": "POC of how to generate swagger from proto",
+  "dependencies": {
+    "shelljs": "^0.8.3"
+  },
+  "scripts": {
+    "update-example": "node update_example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmeku/proto_swagger_gen.git"
+  },
+  "author": "Daniel Muller (mrmeku@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrmeku/proto_swagger_gen/issues"
+  },
+  "homepage": "https://github.com/mrmeku/proto_swagger_gen#readme"
+}
